@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 import ChartGrid from '@/components/chart/ChartGrid';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button'; // Button をインポート
-import { Plus, Minus } from 'lucide-react'; // アイコンをインポート
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox'; // Checkbox をインポート
+import { Plus, Minus } from 'lucide-react';
 
 export default function Home() {
   const [rows, setRows] = useState<number>(10);
   const [cols, setCols] = useState<number>(10);
+  const [showGridLines, setShowGridLines] = useState<boolean>(true); // グリッド線表示状態
 
   const handleRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
@@ -25,20 +27,16 @@ export default function Home() {
     }
   };
 
-  // 行を追加する関数
   const addRow = () => setRows((prev) => prev + 1);
-  // 行を削除する関数 (1行未満にはしない)
   const removeRow = () => setRows((prev) => Math.max(1, prev - 1));
-  // 列を追加する関数
   const addCol = () => setCols((prev) => prev + 1);
-  // 列を削除する関数 (1列未満にはしない)
   const removeCol = () => setCols((prev) => Math.max(1, prev - 1));
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">編み図エディタ</h1>
 
-      {/* グリッドサイズ設定 & 操作フォーム */}
+      {/* 操作フォーム */}
       <div className="flex flex-wrap gap-4 mb-4 items-end">
         {/* 行設定 */}
         <div className="flex items-end gap-1">
@@ -81,11 +79,25 @@ export default function Home() {
             <Minus className="h-4 w-4" />
           </Button>
         </div>
+
+        {/* グリッド線表示設定 */}
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="showGridLines"
+            checked={showGridLines}
+            onCheckedChange={(checked) => setShowGridLines(Boolean(checked))}
+          />
+          <Label htmlFor="showGridLines">グリッド線を表示</Label>
+        </div>
       </div>
 
-      <div className="flex justify-center items-start overflow-auto"> {/* スクロール可能にする */}
-        {/* key を変更することで、サイズ変更時にコンポーネントを再マウントさせる */}
-        <ChartGrid key={`${rows}-${cols}`} rows={rows} cols={cols} />
+      <div className="flex justify-center items-start overflow-auto">
+        <ChartGrid
+          key={`${rows}-${cols}-${showGridLines}`} // key に showGridLines も含める (スタイル変更のため再マウントは必須ではないが念のため)
+          rows={rows}
+          cols={cols}
+          showGridLines={showGridLines} // グリッド線表示状態を渡す
+        />
       </div>
     </div>
   );
