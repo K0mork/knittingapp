@@ -5,13 +5,14 @@ import ChartGrid from '@/components/chart/ChartGrid';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox'; // Checkbox をインポート
-import { Plus, Minus } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Plus, Minus, ZoomIn, ZoomOut } from 'lucide-react'; // ZoomIn, ZoomOut をインポート
 
 export default function Home() {
   const [rows, setRows] = useState<number>(10);
   const [cols, setCols] = useState<number>(10);
-  const [showGridLines, setShowGridLines] = useState<boolean>(true); // グリッド線表示状態
+  const [showGridLines, setShowGridLines] = useState<boolean>(true);
+  const [zoomLevel, setZoomLevel] = useState<number>(1); // 拡大率の状態 (1 = 100%)
 
   const handleRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
@@ -31,6 +32,14 @@ export default function Home() {
   const removeRow = () => setRows((prev) => Math.max(1, prev - 1));
   const addCol = () => setCols((prev) => prev + 1);
   const removeCol = () => setCols((prev) => Math.max(1, prev - 1));
+
+  // 拡大/縮小のステップ
+  const ZOOM_STEP = 0.1;
+  const MIN_ZOOM = 0.5;
+  const MAX_ZOOM = 2.0;
+
+  const zoomIn = () => setZoomLevel((prev) => Math.min(MAX_ZOOM, prev + ZOOM_STEP));
+  const zoomOut = () => setZoomLevel((prev) => Math.max(MIN_ZOOM, prev - ZOOM_STEP));
 
   return (
     <div>
@@ -89,15 +98,32 @@ export default function Home() {
           />
           <Label htmlFor="showGridLines">グリッド線を表示</Label>
         </div>
+
+        {/* 拡大/縮小設定 */}
+        <div className="flex items-end gap-1">
+          <Button variant="outline" size="icon" onClick={zoomIn} aria-label="拡大" disabled={zoomLevel >= MAX_ZOOM}>
+            <ZoomIn className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon" onClick={zoomOut} aria-label="縮小" disabled={zoomLevel <= MIN_ZOOM}>
+            <ZoomOut className="h-4 w-4" />
+          </Button>
+          <span className="text-sm ml-2">{(zoomLevel * 100).toFixed(0)}%</span>
+        </div>
       </div>
 
+      {/* グリッド表示エリア (拡大/縮小のためにラッパーを追加) */}
       <div className="flex justify-center items-start overflow-auto">
-        <ChartGrid
-          key={`${rows}-${cols}-${showGridLines}`} // key に showGridLines も含める (スタイル変更のため再マウントは必須ではないが念のため)
-          rows={rows}
-          cols={cols}
-          showGridLines={showGridLines} // グリッド線表示状態を渡す
-        />
+        <div
+          style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top left' }} // scale を適用
+          className="transition-transform duration-100 ease-linear" // アニメーションを追加 (任意)
+        >
+          <ChartGrid
+            key={`${rows}-${cols}-${showGridLines}`}
+            rows={rows}
+            cols={cols}
+            showGridLines={showGridLines}
+          />
+        </div>
       </div>
     </div>
   );
