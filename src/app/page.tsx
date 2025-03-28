@@ -6,9 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Plus, Minus, ZoomIn, ZoomOut, Undo, Redo } from 'lucide-react'; // Undo, Redo をインポート
-import { useChartStateWithHistory, ChartState } from '@/hooks/useChartStateWithHistory'; // カスタムフックをインポート
-import { useSelectedSymbol } from '@/context/SelectedSymbolContext'; // 選択中記号フックをインポート
+import { Plus, Minus, ZoomIn, ZoomOut, Undo, Redo } from 'lucide-react';
+import { useChartStateWithHistory, ChartState } from '@/hooks/useChartStateWithHistory';
+import { useSelectedSymbol } from '@/context/SelectedSymbolContext';
+import { ERASER_SYMBOL_ID } from '@/lib/symbols'; // 消しゴムIDをインポート
 
 // グリッドを初期化する関数
 const initializeGrid = (rows: number, cols: number): ChartState['grid'] => {
@@ -74,8 +75,16 @@ export default function Home() {
 
     setChartState(prevState => {
       const newGrid = prevState.grid.map(row => [...row]);
-      newGrid[rowIndex][colIndex] =
-        newGrid[rowIndex][colIndex]?.id === selectedSymbol.id ? null : selectedSymbol;
+      const currentCell = newGrid[rowIndex][colIndex];
+
+      if (selectedSymbol.id === ERASER_SYMBOL_ID) {
+        // 消しゴムが選択されている場合はセルを null にする
+        newGrid[rowIndex][colIndex] = null;
+      } else {
+        // 通常の記号の場合、同じ記号なら削除、そうでなければ配置
+        newGrid[rowIndex][colIndex] =
+          currentCell?.id === selectedSymbol.id ? null : selectedSymbol;
+      }
       return { ...prevState, grid: newGrid };
     });
   }, [selectedSymbol, setChartState]);
@@ -100,7 +109,7 @@ export default function Home() {
             <Input
               id="rowsInput"
               type="number"
-              value={chartState.rows} // state から取得
+              value={chartState.rows}
               onChange={handleRowsChange}
               min="1"
               className="w-20"
@@ -121,7 +130,7 @@ export default function Home() {
             <Input
               id="colsInput"
               type="number"
-              value={chartState.cols} // state から取得
+              value={chartState.cols}
               onChange={handleColsChange}
               min="1"
               className="w-20"
@@ -174,10 +183,9 @@ export default function Home() {
           className="transition-transform duration-100 ease-linear"
         >
           <ChartGrid
-            // key は不要になる
-            gridData={chartState.grid} // グリッドデータを渡す
+            gridData={chartState.grid}
             showGridLines={showGridLines}
-            onCellClick={handleCellClick} // セルクリックハンドラを渡す
+            onCellClick={handleCellClick}
           />
         </div>
       </div>
