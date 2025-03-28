@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils"; // cn ユーティリティをインポート
-import MainLayout from "@/components/layout/MainLayout"; // MainLayout をインポート
+import { cn } from "@/lib/utils";
+import MainLayout from "@/components/layout/MainLayout";
+import { SelectedSymbolProvider } from "@/context/SelectedSymbolContext"; // Provider をインポート
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Knitting Chart Maker", // タイトルを変更
-  description: "棒針編みの編み図を簡単に作成・編集・共有できるWebアプリケーション", // 説明を変更
+  title: "Knitting Chart Maker",
+  description: "棒針編みの編み図を簡単に作成・編集・共有できるWebアプリケーション",
 };
 
 export default function RootLayout({
@@ -25,15 +26,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja"> {/* 言語を日本語に設定 */}
+    <html lang="ja">
       <body
-        className={cn( // cn を使用してクラス名を結合
+        className={cn(
           "min-h-screen bg-background font-sans antialiased",
           geistSans.variable,
           geistMono.variable
         )}
       >
-        <MainLayout>{children}</MainLayout> {/* MainLayout で children をラップ */}
+        {/* SelectedSymbolProvider でラップ */}
+        <SelectedSymbolProvider>
+          <MainLayout>{children}</MainLayout>
+        </SelectedSymbolProvider>
       </body>
     </html>
   );
