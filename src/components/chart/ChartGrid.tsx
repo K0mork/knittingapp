@@ -1,64 +1,47 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
-import { useSelectedSymbol, SymbolData } from '@/context/SelectedSymbolContext';
+import { SymbolData } from '@/context/SelectedSymbolContext'; // SymbolData 型のみインポート
 
 interface ChartGridProps {
-  rows?: number;
-  cols?: number;
-  showGridLines?: boolean; // グリッド線表示状態を受け取るプロパティを追加
+  gridData: (SymbolData | null)[][]; // グリッドデータを直接受け取る
+  showGridLines?: boolean;
+  onCellClick: (rowIndex: number, colIndex: number) => void; // セルクリック時のコールバック関数
 }
 
 const ChartGrid: React.FC<ChartGridProps> = ({
-  rows = 10,
-  cols = 10,
-  showGridLines = true, // デフォルトは表示する
+  gridData,
+  showGridLines = true,
+  onCellClick, // props から受け取る
 }) => {
-  const { selectedSymbol } = useSelectedSymbol();
-  const [chartData, setChartData] = useState<(SymbolData | null)[][]>([]);
 
-  useEffect(() => {
-    setChartData(Array(rows).fill(null).map(() => Array(cols).fill(null)));
-  }, [rows, cols]);
-
-  const handleCellClick = (rowIndex: number, colIndex: number) => {
-    if (!selectedSymbol) return;
-
-    const newChartData = chartData.map(row => [...row]);
-    newChartData[rowIndex][colIndex] =
-      newChartData[rowIndex][colIndex]?.id === selectedSymbol.id ? null : selectedSymbol;
-    setChartData(newChartData);
-
-    console.log(
-      `Symbol ${selectedSymbol.label} placed at: row ${rowIndex}, col ${colIndex}`
-    );
-  };
-
-  if (chartData.length === 0) {
-    return null;
+  // グリッドデータが空または不正な場合は何も表示しない
+  if (!gridData || gridData.length === 0 || gridData[0].length === 0) {
+    return <div className="text-center text-muted-foreground p-4">グリッドデータがありません</div>;
   }
 
+  const rows = gridData.length;
+  const cols = gridData[0].length;
+
   return (
-    // グリッド線が表示されている場合のみ外枠を表示
     <div className={cn(
       "inline-block bg-white",
       showGridLines && "border border-gray-300"
     )}>
-      {chartData.map((row, rowIndex) => (
+      {gridData.map((row, rowIndex) => (
         <div key={rowIndex} className="flex">
           {row.map((cellSymbol, colIndex) => (
             <div
               key={`${rowIndex}-${colIndex}`}
               className={cn(
                 'w-8 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-xs',
-                // グリッド線が表示されている場合のみセルごとの境界線を表示
                 showGridLines && 'border border-gray-200',
-                // グリッド線非表示の場合、隣接セルとの間にわずかなスペースを追加して区別しやすくする（オプション）
                 !showGridLines && 'm-[0.5px]',
                 cellSymbol ? 'font-bold' : '',
               )}
-              onClick={() => handleCellClick(rowIndex, colIndex)}
+              // 親コンポーネントから渡された onCellClick を呼び出す
+              onClick={() => onCellClick(rowIndex, colIndex)}
               role="gridcell"
               aria-label={`Row ${rowIndex + 1}, Column ${colIndex + 1}${cellSymbol ? `, Symbol ${cellSymbol.label}` : ''}`}
             >
