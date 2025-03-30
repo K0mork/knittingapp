@@ -40,12 +40,24 @@ export default function Home() {
   // --- 状態更新関数 ---
   const updateGridSize = useCallback((newRows: number, newCols: number) => {
     setChartState(prevState => {
-      // サイズ変更時にグリッド内容を維持するか、初期化するかは要件による
-      // ここでは初期化する例
+      const oldGrid = prevState.grid;
+      const oldRows = prevState.rows;
+      const oldCols = prevState.cols;
+
+      // 新しいグリッドを作成し、null で初期化
+      const newGrid: ChartState['grid'] = Array(newRows).fill(null).map(() => Array(newCols).fill(null));
+
+      // 既存のグリッドデータを新しいグリッドにコピー
+      for (let r = 0; r < Math.min(oldRows, newRows); r++) {
+        for (let c = 0; c < Math.min(oldCols, newCols); c++) {
+          newGrid[r][c] = oldGrid[r][c];
+        }
+      }
+
       return {
         rows: newRows,
         cols: newCols,
-        grid: initializeGrid(newRows, newCols),
+        grid: newGrid,
       };
     });
   }, [setChartState]);
