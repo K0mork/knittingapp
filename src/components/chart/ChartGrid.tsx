@@ -6,7 +6,7 @@ import { SymbolData } from '@/context/SelectedSymbolContext';
 
 interface ChartGridProps {
   gridData: (SymbolData | null)[][];
-  showGridLines?: boolean;
+  // showGridLines?: boolean; // 削除
   onCellClick: (rowIndex: number, colIndex: number) => void;
 }
 
@@ -19,7 +19,7 @@ const ROW_NUMBER_MARGIN_LEFT_CLASS = 'ml-6'; // 左マージン用クラス (w-6
 
 const ChartGrid: React.FC<ChartGridProps> = ({
   gridData,
-  showGridLines = true,
+  // showGridLines = true, // 削除
   onCellClick,
 }) => {
   if (!gridData || gridData.length === 0 || gridData[0].length === 0) {
@@ -68,7 +68,7 @@ const ChartGrid: React.FC<ChartGridProps> = ({
         {/* グリッド本体 */}
         <div className={cn(
           "inline-block bg-white",
-          showGridLines && "border border-gray-300"
+          "border border-gray-300" // 常にボーダーを表示
         )}>
           {gridData.map((row, rowIndex) => (
             <div key={rowIndex} className="flex">
@@ -79,8 +79,8 @@ const ChartGrid: React.FC<ChartGridProps> = ({
                     CELL_WIDTH_CLASS,
                     CELL_HEIGHT_CLASS,
                     'flex items-center justify-center cursor-pointer hover:bg-gray-100 text-xs',
-                    showGridLines && 'border border-gray-200',
-                    !showGridLines && 'm-[0.5px]', // グリッド線がない場合のマージン調整
+                    'border border-gray-200', // 常にボーダーを表示
+                    // !showGridLines && 'm-[0.5px]', // 削除
                     cellSymbol ? 'font-bold' : '',
                   )}
                   onClick={() => onCellClick(rowIndex, colIndex)}

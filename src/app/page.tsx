@@ -34,7 +34,7 @@ export default function Home() {
   });
 
   const { selectedSymbol } = useSelectedSymbol();
-  const [showGridLines, setShowGridLines] = useState<boolean>(true);
+  // const [showGridLines, setShowGridLines] = useState<boolean>(true); // 削除
   const [zoomLevel, setZoomLevel] = useState<number>(1);
 
   // --- 状態更新関数 ---
@@ -193,15 +193,15 @@ export default function Home() {
           <Button variant="outline" onClick={addColRight}>右に追加</Button>
         </div>
 
-        {/* グリッド線表示設定 */}
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="showGridLines"
-            checked={showGridLines}
-            onCheckedChange={(checked) => setShowGridLines(Boolean(checked))}
-          />
-          <Label htmlFor="showGridLines">グリッド線を表示</Label>
-        </div>
+        {/* グリッド線表示設定 (削除) */}
+        {/* <div className="flex items-center space-x-2"> */}
+        {/*   <Checkbox */}
+        {/*     id="showGridLines" */}
+        {/*     checked={showGridLines} */}
+        {/*     onCheckedChange={(checked) => setShowGridLines(Boolean(checked))} */}
+        {/*   /> */}
+        {/*   <Label htmlFor="showGridLines">グリッド線を表示</Label> */}
+        {/* </div> */}
 
         {/* 拡大/縮小設定 */}
         <div className="flex items-end gap-1">
@@ -233,7 +233,7 @@ export default function Home() {
         >
           <ChartGrid
             gridData={chartState.grid}
-            showGridLines={showGridLines}
+            // showGridLines={showGridLines} // 削除
             onCellClick={handleCellClick}
           />
         </div>
