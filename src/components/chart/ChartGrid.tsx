@@ -3,6 +3,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { SymbolData } from '@/context/SelectedSymbolContext';
+import SymbolRenderer from './SymbolRenderer';
 
 interface ChartGridProps {
   gridData: (SymbolData | null)[][];
@@ -87,7 +88,7 @@ const ChartGrid: React.FC<ChartGridProps> = ({
                   role="gridcell"
                   aria-label={`Row ${rows - rowIndex}, Column ${cols - colIndex}${cellSymbol ? `, Symbol ${cellSymbol.label}` : ''}`} // aria-labelも更新
                 >
-                  {cellSymbol?.label.substring(0, 3)}
+                  {cellSymbol && <SymbolRenderer symbol={cellSymbol} className="w-6 h-6" />}
                 </div>
               ))}
             </div>
