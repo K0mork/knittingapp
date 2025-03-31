@@ -17,8 +17,12 @@ export const defaultSymbols: SymbolData[] = [
   // まずは基本の 1x1 を定義する。複数サイズ対応は別途検討。
   { id: 'knit', label: '表編み目', width: 1, height: 1, svgPath: 'src/lib/symbols/knit.svg' },
 
+  // 裏編み目 (purl)
+  // docs/stitchSymbolGuide.md によると、1x1, 2x1, 1x2 のサイズがある。
+  // まずは基本の 1x1 を定義する。複数サイズ対応は別途検討。
+  { id: 'purl', label: '裏編み目', width: 1, height: 1, svgPath: 'src/lib/symbols/purl.svg' },
+
   // TODO: 他の記号を追加していく
-  // { id: 'p', label: '裏目 (P)' },
   // { id: 'yo', label: 'かけ目 (YO)' },
   // { id: 'k2tog', label: '右上2目一度 (K2tog)' },
   // { id: 'ssk', label: '左上2目一度 (SSK)' },

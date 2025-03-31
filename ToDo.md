@@ -20,7 +20,7 @@
 - [x] 生成したSVGファイルをコミットする
 - [ ] `src/lib/symbols.ts` に各編み図記号の情報を追加する
     - [x] knit (表編み目)
-    - [ ] purl (裏編み目)
+    - [x] purl (裏編み目)
     - [ ] left_up_three_one (左上3目交差)
     - [ ] left_up_two_cross (左上2目交差)
     - [ ] left_up_two_one (左上2目1目交差)
