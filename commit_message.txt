@@ -1,18 +1,10 @@
-feature(symbols): 編み図記号を追加
+feature(mobile-ui): モバイル用記号パレットの追加
 
-- stitchSymbolGuide.mdに基づき10種類の編み図記号をsymbols.tsに追加
-- 追加した記号:
-  - 左上2目交差
-  - 左上2目1目交差
-  - 中央上3目交差
-  - 裏編み左上2目1目交差
-  - 右上3目交差
-  - 右上2目交差
-  - 右上2目1目交差
-  - すべり目
-  - ねじり目
-  - 裏ねじり目
+- モバイルUI改善計画書に基づき、フローティング記号パレットを実装
+- 右下に表示されるボタンで記号選択パネルを表示/非表示
+- 記号選択時にSelectedSymbolContextを更新
+- モバイルデバイスのみ表示（md:hidden）
 
 # プロンプト履歴
-1. Q: ToDo.mdに従って他のsvgもsymbols.tsに追加してください
-   A: stitchSymbolGuide.mdを参照し、10種類の記号を追加
+1. Q: 'docs/mobile_ui_improvement_plan.md'に従ってモバイルUIの改善を実施
+   A: 記号選択UIの改善を実施

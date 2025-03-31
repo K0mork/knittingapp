@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import MobileSymbolPalette from '@/components/chart/MobileSymbolPalette';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </div>
       </div>
       {/* TODO: Add Footer */}
+      <MobileSymbolPalette />
     </div>
   );
 };
