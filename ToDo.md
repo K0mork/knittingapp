@@ -17,4 +17,21 @@
     - [x] purl_twist_stitch.svg
     - [x] yo.svg
     - [x] erase.svg
-- [ ] 生成したSVGファイルをコミットする
+- [x] 生成したSVGファイルをコミットする
+- [ ] `src/lib/symbols.ts` に各編み図記号の情報を追加する
+    - [x] knit (表編み目)
+    - [ ] purl (裏編み目)
+    - [ ] left_up_three_one (左上3目交差)
+    - [ ] left_up_two_cross (左上2目交差)
+    - [ ] left_up_two_one (左上2目1目交差)
+    - [ ] middle_up_three_one (中央上3目交差)
+    - [ ] purl_left_up_two_one (裏編み左上2目1目交差)
+    - [ ] right_up_three_one (右上3目交差)
+    - [ ] right_up_two_cross (右上2目交差)
+    - [ ] right_up_two_one (右上2目1目交差)
+    - [ ] slip_stitch (すべり目)
+    - [ ] twist_stitch (ねじり目)
+    - [ ] purl_twist_stitch (裏ねじり目)
+    - [ ] yo (糸をかける)
+    - [ ] erase (消去)
+- [ ] 各記号追加後にコミットする

@@ -6,7 +6,9 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 export interface SymbolData {
   id: string;
   label: string; // 表示用ラベル
-  svg?: string; // SVGデータなど
+  width: number; // マス数（横）
+  height: number; // マス数（縦）
+  svgPath: string; // SVGファイルのパス
 }
 
 // Context の型定義
