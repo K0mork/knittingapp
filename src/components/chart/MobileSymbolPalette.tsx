@@ -15,7 +15,7 @@ const MobileSymbolPalette = () => {
       {/* フローティングボタン */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center text-2xl"
+        className="w-20 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center text-3xl"
       >
         {isOpen ? '×' : '☰'}
       </button>
