@@ -12,8 +12,8 @@ interface ChartGridProps {
 }
 
 // 定数をクラス名として定義
-const CELL_WIDTH_CLASS = 'w-8'; // 32px
-const CELL_HEIGHT_CLASS = 'h-10'; // 40px
+const CELL_WIDTH_CLASS = 'w-8 md:w-12'; // PC:32px, モバイル:48px
+const CELL_HEIGHT_CLASS = 'h-10 md:h-12'; // PC:40px, モバイル:48px
 const ROW_NUMBER_WIDTH_CLASS = 'w-6'; // 24px
 const COL_NUMBER_HEIGHT_CLASS = 'h-6'; // 24px
 const ROW_NUMBER_MARGIN_LEFT_CLASS = 'ml-6'; // 左マージン用クラス (w-6に対応)
@@ -88,7 +88,7 @@ const ChartGrid: React.FC<ChartGridProps> = ({
                   role="gridcell"
                   aria-label={`Row ${rows - rowIndex}, Column ${cols - colIndex}${cellSymbol ? `, Symbol ${cellSymbol.label}` : ''}`} // aria-labelも更新
                 >
-                  {cellSymbol && <SymbolRenderer symbol={cellSymbol} className="w-6 h-6" />}
+                  {cellSymbol && <SymbolRenderer symbol={cellSymbol} className="w-6 md:w-10 h-6 md:h-10" />}
                 </div>
               ))}
             </div>
