@@ -76,10 +76,39 @@ export default function Home() {
     }
   };
 
-  const addRow = () => updateGridSize(chartState.rows + 1, chartState.cols);
+  // const addRow = () => updateGridSize(chartState.rows + 1, chartState.cols); // 削除
   const removeRow = () => updateGridSize(Math.max(1, chartState.rows - 1), chartState.cols);
-  const addCol = () => updateGridSize(chartState.rows, chartState.cols + 1);
+  // const addCol = () => updateGridSize(chartState.rows, chartState.cols + 1); // 削除
   const removeCol = () => updateGridSize(chartState.rows, Math.max(1, chartState.cols - 1));
+
+  // --- 方向指定での行/列追加 ---
+  const addRowTop = useCallback(() => {
+    setChartState(prevState => {
+      const newGrid = [Array(prevState.cols).fill(null), ...prevState.grid];
+      return { ...prevState, rows: prevState.rows + 1, grid: newGrid };
+    });
+  }, [setChartState]);
+
+  const addRowBottom = useCallback(() => {
+    setChartState(prevState => {
+      const newGrid = [...prevState.grid, Array(prevState.cols).fill(null)];
+      return { ...prevState, rows: prevState.rows + 1, grid: newGrid };
+    });
+  }, [setChartState]);
+
+  const addColLeft = useCallback(() => {
+    setChartState(prevState => {
+      const newGrid = prevState.grid.map(row => [null, ...row]);
+      return { ...prevState, cols: prevState.cols + 1, grid: newGrid };
+    });
+  }, [setChartState]);
+
+  const addColRight = useCallback(() => {
+    setChartState(prevState => {
+      const newGrid = prevState.grid.map(row => [...row, null]);
+      return { ...prevState, cols: prevState.cols + 1, grid: newGrid };
+    });
+  }, [setChartState]);
 
   // セルクリック時の処理 (記号配置/削除)
   const handleCellClick = useCallback((rowIndex: number, colIndex: number) => {
@@ -127,9 +156,9 @@ export default function Home() {
               className="w-20"
             />
           </div>
-          <Button variant="outline" size="icon" onClick={addRow} aria-label="行を追加">
-            <Plus className="h-4 w-4" />
-          </Button>
+          {/* <Button variant="outline" size="icon" onClick={addRow} aria-label="行を追加"> */}
+          {/*  <Plus className="h-4 w-4" /> */}
+          {/* </Button> */}
           <Button variant="outline" size="icon" onClick={removeRow} aria-label="行を削除" disabled={chartState.rows <= 1}>
             <Minus className="h-4 w-4" />
           </Button>
@@ -148,12 +177,20 @@ export default function Home() {
               className="w-20"
             />
           </div>
-          <Button variant="outline" size="icon" onClick={addCol} aria-label="列を追加">
-            <Plus className="h-4 w-4" />
-          </Button>
+          {/* <Button variant="outline" size="icon" onClick={addCol} aria-label="列を追加"> */}
+          {/*  <Plus className="h-4 w-4" /> */}
+          {/* </Button> */}
           <Button variant="outline" size="icon" onClick={removeCol} aria-label="列を削除" disabled={chartState.cols <= 1}>
             <Minus className="h-4 w-4" />
           </Button>
+        </div>
+
+        {/* 方向指定での追加ボタン */}
+        <div className="flex items-end gap-1">
+          <Button variant="outline" onClick={addRowTop}>上に追加</Button>
+          <Button variant="outline" onClick={addRowBottom}>下に追加</Button>
+          <Button variant="outline" onClick={addColLeft}>左に追加</Button>
+          <Button variant="outline" onClick={addColRight}>右に追加</Button>
         </div>
 
         {/* グリッド線表示設定 */}
