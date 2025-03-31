@@ -32,6 +32,6 @@
     - [ ] slip_stitch (すべり目)
     - [ ] twist_stitch (ねじり目)
     - [ ] purl_twist_stitch (裏ねじり目)
-    - [ ] yo (糸をかける)
-    - [ ] erase (消去)
+    - [x] yo (糸をかける)
+    - [x] erase (消去)
 - [ ] 各記号追加後にコミットする
