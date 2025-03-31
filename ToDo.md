@@ -1,45 +1,20 @@
-# Knitting Chart Maker 開発タスク
+# ToDo
 
-## 優先実装機能
-
-### 1. 保存/読み込み機能の実装
-- [ ] JSON形式での保存/読み込み
-- [ ] ローカルストレージ自動保存
-- [ ] ファイルエクスポート/インポート
-
-### 2. エクスポート機能
-- [ ] PDF出力（react-pdf）
-- [ ] PNG/JPEG出力（html-to-image）
-- [ ] クリップボードコピー
-
-### 3. カスタム記号機能
-- [ ] SVGアップロード
-- [ ] 記号管理UI
-- [ ] カテゴリ分類
-
-### 4. ナビゲーション支援
-- [ ] 行/列番号表示
-- [ ] グリッドスナップ
-- [ ] ルーラー表示
-
-### 5. 高度編集機能
-- [ ] ドラッグ＆ドロップ
-- [ ] 範囲選択編集
-- [ ] コピー/ペースト
-
-### 6. ドキュメンテーション
-- [ ] 使い方ガイド
-- [ ] ショートカット一覧
-- [ ] チュートリアル
-
-### 7. テスト環境
-- [ ] ユニットテスト
-- [ ] Storybook
-- [ ] E2Eテスト
-
-## 進行中タスク
-- [x] 基本グリッド表示
-- [x] 記号配置機能
-- [x] Undo/Redo機能
-- [x] ズーム機能
-- [x] 消しゴムツール
+- [x] `docs/stitchSymbolGuide.md` から編み図記号の情報を抽出する
+- [x] 各編み図記号のSVGファイルを生成する
+    - [x] knit.svg
+    - [x] purl.svg
+    - [x] left_up_three_one.svg
+    - [x] left_up_two_cross.svg
+    - [x] left_up_two_one.svg
+    - [x] middle_up_three_one.svg
+    - [x] purl_left_up_two_one.svg
+    - [x] right_up_three_one.svg
+    - [x] right_up_two_cross.svg
+    - [x] right_up_two_one.svg
+    - [x] slip_stitch.svg
+    - [x] twist_stitch.svg
+    - [x] purl_twist_stitch.svg
+    - [x] yo.svg
+    - [x] erase.svg
+- [ ] 生成したSVGファイルをコミットする

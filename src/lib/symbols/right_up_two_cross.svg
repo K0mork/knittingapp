@@ -1,0 +1,21 @@
+<svg viewBox="0 0 850.5 850.5" style="width:100%;height:100%;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" fill="none" d="M 0 850.5 L 850.5 850.5 L 850.5 0 L 0 0 Z" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 170.628906 793.128906 L 792.910156 173.558594"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 55.125 680.628906 L 680.121094 56.984375"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 311.921875 423.378906 L 55.125 173.378906"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 680.171875 793.128906 L 423.371094 543.128906"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 795.671875 680.628906 L 538.878906 430.628906"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 422.171875 310.878906 L 165.371094 60.875"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+</svg>

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 850.5 850.5" style="width:100%;height:100%;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" fill="none" d="M 0 850.5 L 850.5 850.5 L 850.5 0 L 0 0 Z" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 398.621094 424.878906 L 735.601562 82.464844"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 398.621094 767.628906 L 398.628906 82.804688"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+  <path fill="none" stroke="currentColor" stroke-width="100.01" stroke-linecap="butt" stroke-linejoin="miter"
+    stroke-opacity="1" stroke-miterlimit="10" d="M 115.871094 82.464844 L 398.460938 424.878906"
+    transform="matrix(1, 0, 0, -1, 0, 850.5)" />
+</svg>
