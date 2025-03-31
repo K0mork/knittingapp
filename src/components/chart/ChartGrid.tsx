@@ -10,10 +10,12 @@ interface ChartGridProps {
   onCellClick: (rowIndex: number, colIndex: number) => void;
 }
 
-const CELL_WIDTH = 'w-8'; // 32px
-const CELL_HEIGHT = 'h-10'; // 40px
-const ROW_NUMBER_WIDTH = 'w-6'; // 24px
-const COL_NUMBER_HEIGHT = 'h-6'; // 24px
+// 定数をクラス名として定義
+const CELL_WIDTH_CLASS = 'w-8'; // 32px
+const CELL_HEIGHT_CLASS = 'h-10'; // 40px
+const ROW_NUMBER_WIDTH_CLASS = 'w-6'; // 24px
+const COL_NUMBER_HEIGHT_CLASS = 'h-6'; // 24px
+const ROW_NUMBER_MARGIN_LEFT_CLASS = 'ml-6'; // 左マージン用クラス (w-6に対応)
 
 const ChartGrid: React.FC<ChartGridProps> = ({
   gridData,
@@ -30,14 +32,14 @@ const ChartGrid: React.FC<ChartGridProps> = ({
   return (
     <div className="inline-flex flex-col">
       {/* 列番号 (右から左へ) */}
-      <div className={cn("flex", `ml-[${ROW_NUMBER_WIDTH}]`)}> {/* 行番号分の左マージン */}
+      <div className={cn("flex", ROW_NUMBER_MARGIN_LEFT_CLASS)}> {/* 行番号分の左マージン */}
         {Array.from({ length: cols }).map((_, colIndex) => (
           <div
             key={`col-num-${colIndex}`}
             className={cn(
-              CELL_WIDTH,
-              COL_NUMBER_HEIGHT,
-              'flex items-center justify-center text-xs text-muted-foreground'
+              CELL_WIDTH_CLASS,
+              COL_NUMBER_HEIGHT_CLASS,
+              'flex items-center justify-center text-center text-xs text-muted-foreground' // text-center を追加
             )}
           >
             {cols - colIndex}
@@ -53,8 +55,8 @@ const ChartGrid: React.FC<ChartGridProps> = ({
             <div
               key={`row-num-${rowIndex}`}
               className={cn(
-                ROW_NUMBER_WIDTH,
-                CELL_HEIGHT,
+                ROW_NUMBER_WIDTH_CLASS,
+                CELL_HEIGHT_CLASS,
                 'flex items-center justify-center text-xs text-muted-foreground'
               )}
             >
@@ -74,8 +76,8 @@ const ChartGrid: React.FC<ChartGridProps> = ({
                 <div
                   key={`${rowIndex}-${colIndex}`}
                   className={cn(
-                    CELL_WIDTH,
-                    CELL_HEIGHT,
+                    CELL_WIDTH_CLASS,
+                    CELL_HEIGHT_CLASS,
                     'flex items-center justify-center cursor-pointer hover:bg-gray-100 text-xs',
                     showGridLines && 'border border-gray-200',
                     !showGridLines && 'm-[0.5px]', // グリッド線がない場合のマージン調整
