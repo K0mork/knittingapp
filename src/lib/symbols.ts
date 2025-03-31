@@ -6,11 +6,9 @@ export const ERASER_SYMBOL_ID = 'eraser';
 // 編み図記号データ
 export const defaultSymbols: SymbolData[] = [
   // 消しゴムツール
-  // Note: 消しゴムは特殊なツールであり、SVGパスやサイズは持たない想定。
-  // 必要に応じて width/height/svgPath をダミー値で埋めるか、型定義を見直す。
-  // ここでは label のみを持つオブジェクトとしておくが、エラーになる可能性がある。
-  // TODO: 消しゴムの扱いを再検討する。一旦 width/height/svgPath を 1/1/空 で設定。
-  { id: ERASER_SYMBOL_ID, label: '消去', width: 1, height: 1, svgPath: 'src/lib/symbols/erase.svg' }, // erase.svg を使う
+  // 消去ツール (erase)
+  // docs/stitchSymbolGuide.md の消去記号仕様に基づき1x1で定義
+  { id: ERASER_SYMBOL_ID, label: '消去', width: 1, height: 1, svgPath: 'src/lib/symbols/erase.svg' },
 
   // 表編み目 (knit)
   // docs/stitchSymbolGuide.md によると、1x1, 2x1, 1x2 のサイズがある。
