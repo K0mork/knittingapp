@@ -15,9 +15,9 @@ const MobileSymbolPalette = () => {
       {/* フローティングボタン */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center"
+        className="w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center text-2xl"
       >
-        {isOpen ? '×' : '≡'}
+        {isOpen ? '×' : '☰'}
       </button>
 
       {/* 記号パレット */}
